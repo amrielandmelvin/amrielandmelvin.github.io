@@ -1,0 +1,330 @@
+<html>
+    <head>
+        <title>Quiz: What You Need To Know About Gen AI</title>
+
+        <link rel="stylesheet" href="HK Modular.css">
+        <link rel="stylesheet" href="./specimen_files/css/boxicons.min.css">
+        <link rel="stylesheet" href="./specimen_files/css/style.css">
+        <link rel="icon" href="./specimen_files/images/favicon.png">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            body{
+                margin:0;
+                padding:0;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position:absolute;        
+            }
+
+            #container{
+                width:960px;
+                height:540px;
+                background-image:url("quiz12bg.png");
+                background-size:cover; /* Make the image cover the entire viewport */
+                background-position:center; /* Center the image */
+                background-repeat:no-repeat;
+                position: relative;
+                overflow: hidden;
+                display: fixed;
+                top: 0;
+                left: 0;
+            }
+            
+
+            .text-box {
+                position: absolute;
+                bottom: -140px;
+                right: 30px;
+                display: flex;
+                object-fit: cover; /* Ensure it covers the container */
+                z-index: 1; /* Lower layer */
+            }
+
+            #text {
+                z-index: 3; 
+                width: 460px; /* Adjust based on image size */
+                line-height: 1.5;
+                height: 60px;
+                text-align: left;
+                position: absolute; 
+                bottom: 140px;
+                left: 250px;
+                padding: 10px;
+                font-family:'HK Modular';
+                font-size: 16px;
+                color: black;
+            }
+
+            .options {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                padding-top: 370px;
+                z-index: 5;
+            }
+
+            .option {
+                width: 150px;
+                height: 80px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #faf5ec;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-size: 14px;
+                color: black;
+                text-align: center;
+                cursor: pointer;
+                border: 2px solid #70261e;
+                border-radius: 8px;
+                transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+                z-index: 5;
+
+                opacity: 0; /* Start with the card hidden */
+                transform: scale(0.8); /* Scale down initially */
+                transition: opacity 0.5s ease, transform 0.5s ease; /* Optional for smoother transitions */
+            }
+
+            .option:hover {
+                background-color: #d4cec1;
+                transform: scale(1.05); /* Slight zoom effect on hover */
+            }
+
+            .option.correct {
+                background-color: #4caf50;
+                color: white;
+            }
+
+            .option.wrong {
+                background-color: #f44336;
+                color: white;
+            }
+            
+
+            #modal {
+                display: none;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 300px;
+                font-family: 'HK Modular', sans-serif;
+                font-size: 20px;
+                background: #faf5ec;
+                border: 2px solid #70261e;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                border-radius: 10px;
+                padding: 20px;
+                text-align: center;
+                z-index: 10;
+            }
+
+            #modal button {
+                margin-top: 15px;
+                padding: 10px 20px;
+                background-color: #9ca7ef;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            #modal button:hover {
+                background-color: #455eec;
+                transform: scale(1.05);
+            }
+
+            /* Modal overlay */
+            #overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 9;
+            }
+
+            #correct-modal {
+                display: none;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 300px;
+                font-family: 'HK Modular', sans-serif;
+                font-size: 20px;
+                background: #faf5ec;
+                border: 2px solid #70261e;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                padding: 20px;
+                text-align: center;
+                z-index: 10;
+            }
+
+            #correct-modal button {
+                margin-top: 15px;
+                padding: 10px 20px;
+                background-color: #9ca7ef;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            #correct-modal button:hover {
+                background-color: #455eec;
+                transform: scale(1.05);
+            }
+
+            @keyframes popUp {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        </style>
+    </head>
+   
+    <body>
+        <div id="container">
+            <div id="text"></div>
+            <div class="options">
+                <div class="option" data-correct="false">Replaces jobs, overreliance, <br>boosts creativity</div>
+                <div class="option" data-correct="true">Replaces jobs, overreliance, <br>ethical dilemmas</div>
+                <div class="option" data-correct="false">Overreliance, <br>ethical dilemmas, personalised experience</div>
+                <div class="option" data-correct="false">Overreliance, <br>ethical dilemmas, boosts creativity</div>
+            </div>
+            <div class="image-container">
+                <img src="text-box.png" alt="text box" class="text-box">
+            </div>
+
+            <div id="overlay"></div>
+            <div id="modal">
+                <p>Try Again!</p>
+                <button id="close-modal">Close</button>
+            </div>
+
+            <div id="correct-modal">
+                <p>Correct!</p>
+                <button id="close-correct-modal">Close</button>
+            </div>
+        </div>
+
+        <script>
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const cards = document.querySelectorAll(".option");
+
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.animation = "popUp 0.5s ease forwards"; // Trigger the pop-up animation
+                    }, 1500 + index * 500); // Add an initial 2-second delay before the staggered animations
+                });
+            });
+
+        </script>
+    
+        <script>
+            const textElement = document.getElementById("text");
+            const optionsContainer = document.querySelector(".options");
+            const options = document.querySelectorAll(".option");
+            const body = document.body;
+
+            const modal = document.getElementById("modal");
+            const overlay = document.getElementById("overlay");
+            const closeModal = document.getElementById("close-modal");
+
+            const correctModal = document.getElementById("correct-modal");
+            const closeCorrectModal = document.getElementById("close-correct-modal");
+
+            const fullText = "What are the 3 cons of Gen AI?";
+            const typingSpeed = 50; // Speed of typing effect in milliseconds
+            let currentText = ""; // Tracks the current visible text
+            let charIndex = 0; // Tracks the current character index
+    
+            // Typing effect
+            function typeText() {
+                if (charIndex < fullText.length) {
+                    currentText += fullText[charIndex];
+                    textElement.textContent = currentText;
+                    charIndex++;
+                } else {
+                    clearInterval(typingInterval);
+                    // After typing is done, show options
+                    optionsContainer.style.animationPlayState = "running";
+                }
+            }
+
+            // Start typing effect when the page loads
+            const typingInterval = setInterval(typeText, typingSpeed);
+
+
+            options.forEach(option => {
+                option.addEventListener("click", () => {
+                    const isCorrect = option.getAttribute("data-correct") === "true";
+
+                    if (isCorrect) {
+                        option.classList.add("correct");
+                        showCorrectModal(); // Show "Correct!" modal
+                        setTimeout(() => {
+                            window.location.href = "quiz-page13.html";}, 1000);
+                    } 
+                    else {
+                        option.classList.add("wrong");
+                        showModal();
+                    }
+
+                    // Disable further clicks on all options
+                    options.forEach(opt => opt.style.pointerEvents = "none");
+
+                });
+            });
+
+            // Show the modal
+            function showModal() {
+                modal.style.display = "block";
+                overlay.style.display = "block";
+            }
+
+            // Show the modal for correct answer
+            function showCorrectModal() {
+                correctModal.style.display = "block";
+                overlay.style.display = "block";
+            }
+
+            // Close the modal
+            closeModal.addEventListener("click", () => {
+                modal.style.display = "none";
+                overlay.style.display = "none";
+
+                // Allow retry by enabling options again
+                options.forEach(option => {
+                    option.style.pointerEvents = "auto";
+                    option.classList.remove("wrong");
+                });
+            });
+        </script>
+
+    </body>
+</html>
