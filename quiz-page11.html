@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <title>Quiz: What You Need To Know About Gen AI</title>
+
+        <link rel="stylesheet" href="HK Modular.css">
+        <link rel="stylesheet" href="./specimen_files/css/boxicons.min.css">
+        <link rel="stylesheet" href="./specimen_files/css/style.css">
+        <link rel="icon" href="./specimen_files/images/favicon.png">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            body{
+                margin:0;
+                padding:0;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position:absolute;         
+                overflow: hidden;        
+            }
+
+            #container{
+                width:960px;
+                height:540px;
+                background-image:url("quiz11bg.png");
+                background-size:cover; /* Make the image cover the entire viewport */
+                background-position:center; /* Center the image */
+                background-repeat:no-repeat;
+                overflow: hidden;
+                display: fixed;
+                top: 0;
+                left: 0;
+            }
+            
+
+            .text-box {
+                position: absolute;
+                bottom: -140px;
+                right: 30px;
+                display: flex;
+                object-fit: cover; /* Ensure it covers the container */
+                z-index: 1; /* Lower layer */
+            }
+
+            #text {
+                z-index: 3; 
+                width: 710px; /* Adjust based on image size */
+                line-height: 1.5;
+                height: 180px;
+                text-align: left;
+                position: absolute; 
+                bottom: -22px;
+                left: 105px;
+                padding: 10px;
+                font-family:'HK Modular';
+                font-size: 16px;
+                color: black;
+            }
+
+
+        </style>
+    </head>
+   
+    <body>
+        <div id="container">
+            <div id="text"></div>
+            <div class="image-container">
+                <img src="text-box.png" alt="text box" class="text-box">
+                <div id="scenario" class="typewriter"></div>
+            </div>
+        </div>
+    
+        <script>
+            const textElement = document.getElementById("text");
+            const fullText = "It shatters into smithereens. But there’s no time to celebrate — one enemy ship remains, and the battle is far from over.";
+            const typingSpeed = 50; // Speed of typing effect in milliseconds
+            let currentText = ""; // Tracks the current visible text
+            let charIndex = 0; // Tracks the current character index
+            let typingInterval; // Reference to the typing interval
+    
+            function typeText() {
+                if (charIndex < fullText.length) {
+                    currentText += fullText[charIndex];
+                    textElement.textContent = currentText;
+                    charIndex++;
+                } else {
+                    clearInterval(typingInterval);
+                    redirectToNextPage(); // Trigger the redirect once typing is complete
+                }
+            }
+    
+            function redirectToNextPage() {
+                setTimeout(() => {
+                    window.location.href = "quiz-page12.html"; // Replace with your desired URL
+                }, 2000); // Wait 2 seconds before redirecting
+            }
+    
+            // Start typing effect when the page loads
+            typingInterval = setInterval(typeText, typingSpeed);
+        </script>
+    </body>
+</html>
