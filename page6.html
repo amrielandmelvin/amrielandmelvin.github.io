@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>What You Need To Know About Gen AI</title>
+
+        <link rel="stylesheet" href="HK Modular.css">
+        <link rel="stylesheet" href="./specimen_files/css/boxicons.min.css">
+        <link rel="stylesheet" href="./specimen_files/css/style.css">
+        <link rel="icon" href="./specimen_files/images/favicon.png">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            body {
+                margin:0;
+                padding:0;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position:absolute;
+            }
+
+            #container {
+                width:960px;
+                height:540px;
+                background-image:url("pg2bg.png");
+                background-size:cover; /* Make the image cover the entire viewport */
+                background-position:center; /* Center the image */
+                background-repeat:no-repeat;
+                overflow: hidden;
+                display: fixed;
+                top: 0;
+                left: 0;
+            }
+
+
+            h2 {
+                text-align: center;
+                margin: 20px 0;
+                font-family: 'Bangers', sans-serif;
+                font-size: 55px;
+                letter-spacing: 4px;
+                color: #455eed;
+                text-shadow: 2px 4px 4px #5ce1e6;
+            }
+
+            .description {
+                position: relative;
+                padding: 40px;
+                text-align: center;
+            }
+
+            .information {
+                position: relative;
+                z-index: 2; /* Ensure it is above the popup */
+                margin-top: 20px;
+            }
+
+            .example-section {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            .example-card {
+                width: 30%; /* Set each card to take up 30% of the parent width */
+                text-align: center; /* Center-align the content inside */
+                margin: 0 auto; /* Center-align the card itself */
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center the image and text vertically */
+                gap: 10px; /* Ensure spacing between elements inside the card */
+
+                opacity: 0; /* Start with the card hidden */
+                transform: scale(0.8); /* Scale down initially */
+                transition: opacity 0.5s ease, transform 0.5s ease; /* Optional for smoother transitions */
+            }
+
+            .example-card img {
+                width: 120%; /* Let the image fill the width of the container */
+                height: auto; /* Maintain the aspect ratio */
+                margin-bottom: -30px; /* Space between the image and the text */
+            }
+
+            .example-card p {
+                font-size: 14px;
+                color: black;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                text-align: center;
+            }
+
+            #next {
+                position: absolute;
+                bottom: 15px;
+                right: 15px;
+                font-family: 'HK Modular';
+                font-size: 14px;
+            }
+
+            #next a {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #9ca7ef;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+
+            #next a:hover {
+                background-color: #455eec;
+                transform: scale(1.05);
+            }
+
+            #back {
+                position: absolute;
+                bottom: 15px;
+                left: 15px;
+                font-family: 'HK Modular';
+                font-size: 14px;
+            }
+
+            #back a {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #9ca7ef;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+
+            #back a:hover {
+                background-color: #455eec;
+                transform: scale(1.05);
+            }
+
+            @keyframes popUp {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.8);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="container">
+            <h2>How to use Gen AI responsibly</h2>
+
+            <div class="description">
+
+                <!-- Information text and examples -->
+                <div class="information">
+                
+                    <div class="example-section">
+                        <div class="example-card">
+                            <img src="double-check-icon.png" alt="Double Check Icon"> <!-- Replace with your downloaded image -->
+                            <p><strong>Double-check <br>for accuracy</strong></p>
+                        </div>
+                        <div class="example-card">
+                            <img src="fake-icon.png" alt="Fake News Icon"> <!-- Replace with your downloaded image -->
+                            <p><strong>Avoid spreading <br>fake news</strong></p>
+                        </div>
+                        <div class="example-card">
+                            <img src="mindful-icon.png" alt="Mindful Icon"> <!-- Replace with your downloaded image -->
+                            <p><strong>Be mindful of <br>ethical implications</strong></p>
+                        </div> 
+                    </div>
+                </div>  
+            </div>
+
+            <!-- Next Button -->
+            <div id="next">
+                <a href="quiz-index.html">Next</a> <!-- Replace with the URL of your next page -->
+            </div>
+
+            <div id="back">
+                <a href="page5.html">Back</a> <!-- Replace with the URL of your next page -->
+            </div>
+
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const cards = document.querySelectorAll(".example-card");
+                
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.animation = "popUp 0.7s ease forwards"; // Trigger the pop-up animation
+                    }, index * 700); // Delay each card by 700ms
+                });
+            });
+        </script>
+
+    </body>
+</html>

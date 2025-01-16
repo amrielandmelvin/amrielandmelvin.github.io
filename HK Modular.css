@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'HK Modular';
+    src: url('fonts/HK-Modular-Font.eot');
+    src: url('fonts/HK-Modular-Font.eot?#iefix') format('embedded-opentype'),
+         url('fonts/HK-Modular-Font.woff2') format('woff2'),
+         url('fonts/HK-Modular-Font.woff') format('woff'),
+         url('fonts/HK-Modular-Font.ttf')  format('truetype'),
+         url('fonts/HK-Modular-Font.svg#HK Modular') format('svg');
+}
